@@ -281,6 +281,10 @@
   .slot:hover{border-color:var(--accent);color:var(--accent);}
   .slot.sel{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600;}
   .muted-note{font-size:.85rem;color:var(--muted);text-align:center;margin-top:16px;}
+  #booking .dialog{max-width:700px;}
+  .book-embed{padding:10px;}
+  .book-embed iframe{display:block;width:100%;height:640px;border:0;border-radius:10px;background:var(--white);}
+  @media(max-width:640px){.book-embed iframe{height:74vh;}}
 
   /* ---------- Responsive ---------- */
   @media(max-width:820px){
@@ -620,29 +624,12 @@
     <div class="dialog-head">
       <div class="kicker">Book an assessment</div>
       <h3>Choose a time that suits you</h3>
-      <p>Pick a weekday and slot for a 45-minute introductory session (Central European Time).</p>
+      <p>Pick a 45-minute introductory session — you'll receive a calendar invite and confirmation by email.</p>
       <button class="close-x" data-close aria-label="Close">&times;</button>
     </div>
-    <div class="dialog-body" id="bookBody">
-      <div class="cal-head">
-        <strong id="calLabel"></strong>
-        <div class="cal-nav">
-          <button type="button" id="calPrev" aria-label="Previous month">&lsaquo;</button>
-          <button type="button" id="calNext" aria-label="Next month">&rsaquo;</button>
-        </div>
-      </div>
-      <div class="cal-grid" id="calGrid"></div>
-      <div class="slots-wrap" id="slotsWrap" hidden>
-        <h4 id="slotsLabel">Available times</h4>
-        <div class="slots" id="slots"></div>
-      </div>
-      <p class="muted-note" id="calHint">Weekends are unavailable. Select a date to see times.</p>
+    <div class="dialog-body book-embed">
+      <iframe title="Book an appointment with S. Lozovoy Consulting" src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ26oVyPtrE14PvXW0AL4lZ6rimFXbfIdNk8M9XX0MBP89v3f2CBjiJ6aGhTr6JCVVZKrmv_1FJW?gv=true" loading="lazy"></iframe>
     </div>
-    <div class="dialog-foot">
-      <button type="button" class="btn btn-ghost" data-close>Cancel</button>
-      <button type="button" class="btn" id="bookConfirm" disabled>Confirm booking</button>
-    </div>
-    <!-- success overlay reuses body -->
   </div>
 </div>
 
@@ -658,7 +645,6 @@
     m.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
     if(id==='questionnaire') qGo(0);
-    if(id==='booking') renderCal();
   }
   function closeModal(m){
     m.classList.remove('open');
@@ -772,103 +758,6 @@
     if(qi===REVIEW){ sendQuestionnaire(); qGo(SUCCESS); return; }
   });
   qBack.addEventListener('click', function(){ if(qi>0) qGo(qi-1); });
-
-  /* ---------- booking calendar ---------- */
-  var SLOTS = ['09:00','10:00','11:00','14:00','15:00','16:00'];
-  var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  var DOW = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-  var today = new Date(); today.setHours(0,0,0,0);
-  var vY = today.getFullYear(), vM = today.getMonth();
-  var selDate = null, selTime = null;
-
-  var calLabel = document.getElementById('calLabel');
-  var calGrid = document.getElementById('calGrid');
-  var calPrev = document.getElementById('calPrev');
-  var calNext = document.getElementById('calNext');
-  var slotsWrap = document.getElementById('slotsWrap');
-  var slotsBox = document.getElementById('slots');
-  var slotsLabel = document.getElementById('slotsLabel');
-  var bookConfirm = document.getElementById('bookConfirm');
-
-  function sameYM(y,m,d){ return d.getFullYear()===y && d.getMonth()===m; }
-
-  function renderCal(){
-    calLabel.textContent = MONTHS[vM]+' '+vY;
-    calPrev.disabled = (vY===today.getFullYear() && vM===today.getMonth());
-    calGrid.innerHTML = '';
-    DOW.forEach(function(d){
-      var el = document.createElement('div'); el.className='dow'; el.textContent=d; calGrid.appendChild(el);
-    });
-    var first = new Date(vY,vM,1);
-    var offset = (first.getDay()+6)%7; // Mon=0
-    var days = new Date(vY,vM+1,0).getDate();
-    for(var i=0;i<offset;i++){
-      var e = document.createElement('div'); e.className='cal-day empty'; calGrid.appendChild(e);
-    }
-    for(var d=1; d<=days; d++){
-      var dateObj = new Date(vY,vM,d); dateObj.setHours(0,0,0,0);
-      var btn = document.createElement('button');
-      btn.type='button'; btn.className='cal-day'; btn.textContent=d;
-      var dow = dateObj.getDay();
-      var past = dateObj < today;
-      var weekend = (dow===0 || dow===6);
-      if(past || weekend){ btn.disabled = true; }
-      else {
-        (function(dObj, bEl){
-          bEl.addEventListener('click', function(){ selectDate(dObj, bEl); });
-        })(dateObj, btn);
-      }
-      if(selDate && selDate.getTime()===dateObj.getTime()) btn.classList.add('sel');
-      calGrid.appendChild(btn);
-    }
-  }
-
-  function selectDate(dObj, btn){
-    selDate = dObj; selTime = null;
-    calGrid.querySelectorAll('.cal-day.sel').forEach(function(b){ b.classList.remove('sel'); });
-    btn.classList.add('sel');
-    var label = dObj.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
-    slotsLabel.textContent = 'Times on '+label;
-    slotsBox.innerHTML='';
-    SLOTS.forEach(function(t){
-      var s = document.createElement('button');
-      s.type='button'; s.className='slot'; s.textContent=t;
-      s.addEventListener('click', function(){
-        selTime = t;
-        slotsBox.querySelectorAll('.slot.sel').forEach(function(x){ x.classList.remove('sel'); });
-        s.classList.add('sel');
-        bookConfirm.disabled = false;
-      });
-      slotsBox.appendChild(s);
-    });
-    slotsWrap.hidden = false;
-    bookConfirm.disabled = true;
-  }
-
-  calPrev.addEventListener('click', function(){
-    if(calPrev.disabled) return;
-    vM--; if(vM<0){ vM=11; vY--; } renderCal();
-  });
-  calNext.addEventListener('click', function(){
-    vM++; if(vM>11){ vM=0; vY++; } renderCal();
-  });
-
-  bookConfirm.addEventListener('click', function(){
-    if(!selDate || !selTime) return;
-    var pretty = selDate.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-    var body =
-      "I'd like to book a Swiss Entry Assessment.\n\n"+
-      "Requested slot: "+pretty+" at "+selTime+" (CET)\n\n"+
-      "Name:\nCompany:\nBrief note on the Swiss opportunity:\n";
-    window.location.href = "mailto:"+CONTACT+
-      "?subject="+encodeURIComponent("Assessment booking — "+pretty+" "+selTime)+
-      "&body="+encodeURIComponent(body);
-    document.getElementById('bookBody').innerHTML =
-      '<div class="success"><div class="badge">✓</div><h3>Almost there</h3>'+
-      '<p>A draft email requesting <b>'+pretty+' at '+selTime+' (CET)</b> has opened in your email app. '+
-      'Press send and you\'ll receive a calendar confirmation by return.</p></div>';
-    bookConfirm.style.display='none';
-  });
 })();
 </script>
 
