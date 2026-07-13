@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S. Lozovoy Consulting — Swiss Finance Desk for UK Companies</title>
+<meta name="description" content="Financial planning and implementation support for UK SMEs entering the Swiss market. Independent, commercially grounded advice from a Swiss-based finance professional.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14213d;
+    --ink-soft:#33415c;
+    --paper:#fbfaf7;
+    --paper-2:#f2efe9;
+    --line:#e2ddd3;
+    --accent:#9a3324;      /* muted brick red — a quiet nod to UK & CH */
+    --accent-soft:#b04a3a;
+    --gold:#a9852f;
+    --muted:#5c6577;
+    --white:#ffffff;
+    --shadow:0 1px 2px rgba(20,33,61,.05), 0 10px 30px rgba(20,33,61,.06);
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    color:var(--ink-soft);
+    background:var(--paper);
+    line-height:1.65;
+    font-size:17px;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;color:var(--ink);line-height:1.15;font-weight:500;letter-spacing:-.01em;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-block;background:var(--accent);color:#fff;padding:11px 22px;border-radius:8px;
+    font-weight:500;font-size:.92rem;line-height:1.3;transition:transform .15s ease,background .15s ease;
+    white-space:nowrap;border:0;cursor:pointer;font-family:inherit;
+  }
+  .btn:hover{background:var(--accent-soft);text-decoration:none;transform:translateY(-1px);color:#fff;}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line);}
+  .btn-ghost:hover{background:var(--white);border-color:var(--ink);color:var(--ink);}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,250,247,.85);
+    backdrop-filter:saturate(180%) blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px;}
+  .brand{display:flex;align-items:center;gap:12px;font-family:'Fraunces',serif;font-weight:600;font-size:1.15rem;color:var(--ink);}
+  .mark{
+    width:38px;height:38px;border-radius:8px;flex:none;
+    background:var(--ink);color:var(--paper);
+    display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;
+    position:relative;
+  }
+  .mark::after{content:"";position:absolute;right:6px;bottom:6px;width:7px;height:7px;background:var(--accent);border-radius:2px;}
+  .brand small{display:block;font-family:'Inter',sans-serif;font-weight:400;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+  .nav-links{display:flex;gap:30px;align-items:center;}
+  .nav-links a{color:var(--ink-soft);font-size:.92rem;font-weight:500;}
+  .nav-links a:hover{color:var(--accent);text-decoration:none;}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:88px 0 76px;position:relative;overflow:hidden;}
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:0;
+    background:
+      radial-gradient(60% 55% at 82% 0%, rgba(154,51,36,.06), transparent 60%),
+      radial-gradient(50% 50% at 8% 100%, rgba(20,33,61,.05), transparent 60%);
+  }
+  .hero .wrap{position:relative;z-index:1;max-width:920px;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--accent);}
+  .hero h1{font-size:clamp(2.4rem,5.4vw,4rem);margin:0 0 22px;font-weight:500;}
+  .hero .lede{font-size:clamp(1.12rem,2vw,1.32rem);color:var(--ink-soft);max-width:680px;margin:0 0 18px;font-weight:400;}
+  .hero p{max-width:660px;color:var(--muted);margin:0 0 16px;}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px;}
+
+  /* ---------- Sections ---------- */
+  section{padding:76px 0;}
+  .section-alt{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .kicker{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:16px;}
+  h2{font-size:clamp(1.7rem,3.4vw,2.5rem);margin:0 0 8px;}
+  .section-intro{max-width:720px;font-size:1.08rem;color:var(--ink-soft);margin:18px 0 0;}
+
+  /* ---------- Decision / roles ---------- */
+  .role-line{max-width:760px;color:var(--muted);font-size:1.05rem;margin:0 0 30px;}
+  .q-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:14px;}
+  .q-grid li{background:var(--paper);padding:26px 28px;list-style:none;display:flex;gap:16px;align-items:flex-start;font-size:1rem;color:var(--ink-soft);}
+  .q-grid li .n{font-family:'Fraunces',serif;color:var(--accent);font-size:1.05rem;font-weight:600;flex:none;line-height:1.4;}
+  .desk-tag{margin-top:30px;font-size:1.1rem;color:var(--ink);}
+  .desk-tag strong{color:var(--accent);font-weight:600;}
+
+  /* ---------- Blueprint card ---------- */
+  .blueprint{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:start;}
+  .deliver{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:2px;}
+  .deliver li{padding:13px 0 13px 30px;position:relative;border-bottom:1px solid var(--line);color:var(--ink-soft);font-size:1rem;}
+  .deliver li:last-child{border-bottom:none;}
+  .deliver li::before{
+    content:"";position:absolute;left:2px;top:20px;width:12px;height:12px;border-radius:50%;
+    border:2px solid var(--accent);
+  }
+  .outcome-card{
+    background:var(--ink);color:#e9ecf3;border-radius:16px;padding:38px 34px;box-shadow:var(--shadow);
+    position:sticky;top:96px;
+  }
+  .outcome-card h3{color:#fff;font-size:1.35rem;margin:0 0 14px;}
+  .outcome-card p{color:#c3c9d6;font-size:1rem;margin:0 0 22px;}
+  .outcome-list{list-style:none;padding:0;margin:0;display:grid;gap:14px;}
+  .outcome-list li{display:flex;gap:12px;align-items:flex-start;color:#e9ecf3;font-size:.98rem;}
+  .outcome-list li b{color:#fff;font-weight:600;}
+  .check{color:var(--gold);flex:none;font-weight:700;}
+
+  /* ---------- Ongoing support ---------- */
+  .support-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:30px;}
+  .support-grid .item{
+    background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:22px 22px;
+    font-size:.98rem;color:var(--ink-soft);box-shadow:var(--shadow);
+  }
+  .support-grid .item span{display:block;color:var(--accent);font-family:'Fraunces',serif;font-weight:600;font-size:.9rem;margin-bottom:8px;}
+  .pull{max-width:680px;margin:36px auto 0;text-align:center;font-family:'Fraunces',serif;font-size:1.3rem;color:var(--ink);line-height:1.4;}
+
+  /* ---------- Who it's for ---------- */
+  .fit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:28px;}
+  .fit{display:flex;gap:14px;align-items:flex-start;padding:20px 22px;background:var(--white);border:1px solid var(--line);border-radius:12px;}
+  .fit .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none;margin-top:8px;}
+  .fit p{margin:0;font-size:.98rem;color:var(--ink-soft);}
+  .sectors{margin-top:30px;font-size:1.02rem;color:var(--muted);max-width:760px;}
+  .sectors b{color:var(--ink);font-weight:600;}
+
+  /* ---------- About ---------- */
+  .about{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;}
+  .portrait{
+    width:150px;height:150px;border-radius:16px;flex:none;
+    background:linear-gradient(160deg,var(--ink),#2a3a5c);
+    display:grid;place-items:center;color:var(--paper);font-family:'Fraunces',serif;font-size:2.6rem;font-weight:500;
+    box-shadow:var(--shadow);
+  }
+  .about p{margin:0 0 16px;}
+  .about p:last-child{margin-bottom:0;}
+
+  /* ---------- CTA ---------- */
+  .cta{background:var(--ink);color:#e9ecf3;text-align:center;}
+  .cta h2{color:#fff;}
+  .cta .section-intro{color:#c3c9d6;margin-left:auto;margin-right:auto;text-align:center;}
+  .cta-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;max-width:860px;margin:38px auto 0;text-align:left;}
+  .cta-list li{list-style:none;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:16px 18px;font-size:.95rem;color:#dbe0ea;}
+  .cta-outcome{max-width:640px;margin:34px auto 0;color:#c3c9d6;font-style:italic;}
+  .cta .btn{margin-top:34px;font-size:1rem;padding:14px 30px;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--paper-2);border-top:1px solid var(--line);padding:44px 0;}
+  .foot{display:flex;justify-content:space-between;align-items:flex-start;gap:28px;flex-wrap:wrap;}
+  .foot .brand small{color:var(--muted);}
+  .foot-contact{font-size:.95rem;color:var(--muted);}
+  .foot-contact a{font-weight:500;}
+  .foot-note{margin-top:26px;padding-top:20px;border-top:1px solid var(--line);font-size:.82rem;color:var(--muted);line-height:1.6;}
+
+  /* ---------- Modal shell ---------- */
+  .modal{position:fixed;inset:0;z-index:100;display:none;align-items:flex-start;justify-content:center;padding:5vh 18px;overflow-y:auto;}
+  .modal.open{display:flex;}
+  .modal-backdrop{position:fixed;inset:0;background:rgba(20,33,61,.55);backdrop-filter:blur(4px);}
+  .dialog{
+    position:relative;z-index:1;width:100%;max-width:560px;background:var(--paper);border-radius:18px;
+    box-shadow:0 24px 70px rgba(20,33,61,.35);overflow:hidden;margin:auto;
+    animation:pop .22s ease;
+  }
+  @keyframes pop{from{opacity:0;transform:translateY(10px) scale(.985);}to{opacity:1;transform:none;}}
+  .dialog-head{padding:26px 28px 20px;border-bottom:1px solid var(--line);position:relative;}
+  .dialog-head .kicker{margin-bottom:8px;}
+  .dialog-head h3{font-size:1.5rem;margin:0;}
+  .dialog-head p{margin:8px 0 0;font-size:.95rem;color:var(--muted);}
+  .close-x{
+    position:absolute;top:20px;right:20px;width:34px;height:34px;border-radius:8px;border:1px solid var(--line);
+    background:var(--white);color:var(--ink-soft);cursor:pointer;font-size:1.1rem;line-height:1;display:grid;place-items:center;
+  }
+  .close-x:hover{background:var(--paper-2);color:var(--ink);}
+  .dialog-body{padding:26px 28px;}
+  .dialog-foot{padding:18px 28px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid var(--line);}
+
+  /* progress */
+  .progress{display:flex;gap:6px;padding:0 28px;margin-top:2px;}
+  .progress span{height:4px;flex:1;background:var(--line);border-radius:3px;overflow:hidden;}
+  .progress span i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s ease;}
+  .progress span.done i,.progress span.active i{width:100%;}
+
+  /* form bits */
+  .field{margin-bottom:18px;}
+  .field:last-child{margin-bottom:0;}
+  .field label{display:block;font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:7px;}
+  .field input,.field select,.field textarea{
+    width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--white);
+    font-family:inherit;font-size:1rem;color:var(--ink-soft);transition:border-color .15s,box-shadow .15s;
+  }
+  .field textarea{resize:vertical;min-height:96px;}
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(154,51,36,.12);
+  }
+  .step-legend{font-family:'Fraunces',serif;font-size:1.2rem;color:var(--ink);margin:0 0 18px;font-weight:500;}
+  .opts{display:grid;gap:10px;}
+  .opt{
+    display:flex;align-items:center;gap:13px;padding:14px 16px;border:1px solid var(--line);border-radius:11px;
+    background:var(--white);cursor:pointer;transition:border-color .15s,background .15s;font-size:.98rem;color:var(--ink-soft);
+  }
+  .opt:hover{border-color:var(--accent-soft);}
+  .opt input{appearance:none;width:20px;height:20px;border:2px solid var(--line);border-radius:50%;flex:none;margin:0;position:relative;transition:border-color .15s;}
+  .opt input:checked{border-color:var(--accent);}
+  .opt input:checked::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--accent);}
+  .opt:has(input:checked){border-color:var(--accent);background:rgba(154,51,36,.05);}
+  .hint{font-size:.85rem;color:var(--muted);margin:-4px 0 0;}
+
+  /* review */
+  .review-row{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:.95rem;}
+  .review-row:last-child{border-bottom:none;}
+  .review-row .k{color:var(--muted);flex:none;}
+  .review-row .v{color:var(--ink);text-align:right;font-weight:500;}
+
+  /* success panel */
+  .success{text-align:center;padding:14px 0 6px;}
+  .success .badge{width:60px;height:60px;border-radius:50%;background:rgba(154,51,36,.1);color:var(--accent);display:grid;place-items:center;margin:0 auto 18px;font-size:1.7rem;}
+  .success h3{margin:0 0 10px;font-size:1.4rem;}
+  .success p{color:var(--muted);margin:0 auto 8px;max-width:400px;font-size:.98rem;}
+
+  /* calendar */
+  .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+  .cal-head strong{font-family:'Fraunces',serif;font-size:1.15rem;color:var(--ink);font-weight:600;}
+  .cal-nav{display:flex;gap:8px;}
+  .cal-nav button{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:var(--white);cursor:pointer;color:var(--ink-soft);font-size:1rem;display:grid;place-items:center;}
+  .cal-nav button:hover:not(:disabled){background:var(--paper-2);color:var(--ink);}
+  .cal-nav button:disabled{opacity:.35;cursor:not-allowed;}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;}
+  .cal-grid .dow{text-align:center;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:6px 0;font-weight:600;}
+  .cal-day{aspect-ratio:1;border:1px solid transparent;border-radius:9px;background:var(--white);cursor:pointer;font-family:inherit;font-size:.95rem;color:var(--ink-soft);transition:.12s;border-color:var(--line);}
+  .cal-day:hover:not(:disabled){border-color:var(--accent);color:var(--accent);}
+  .cal-day:disabled{background:transparent;color:#c3bfb4;cursor:not-allowed;border-color:transparent;}
+  .cal-day.sel{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600;}
+  .cal-day.empty{background:transparent;border:none;cursor:default;}
+  .slots-wrap{margin-top:22px;}
+  .slots-wrap h4{font-family:'Inter',sans-serif;font-size:.9rem;font-weight:600;color:var(--ink);margin:0 0 12px;}
+  .slots{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;}
+  .slot{padding:10px;border:1px solid var(--line);border-radius:9px;background:var(--white);cursor:pointer;font-family:inherit;font-size:.95rem;color:var(--ink-soft);transition:.12s;}
+  .slot:hover{border-color:var(--accent);color:var(--accent);}
+  .slot.sel{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600;}
+  .muted-note{font-size:.85rem;color:var(--muted);text-align:center;margin-top:16px;}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:820px){
+    .blueprint{grid-template-columns:1fr;gap:34px;}
+    .outcome-card{position:static;}
+    .q-grid{grid-template-columns:1fr;}
+    .about{grid-template-columns:1fr;text-align:center;}
+    .portrait{margin:0 auto;}
+  }
+  @media(max-width:640px){
+    body{font-size:16px;}
+    .nav-links a:not(.btn){display:none;}
+    .hero{padding:60px 0 54px;}
+    section{padding:56px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <div class="mark">SL</div>
+      <div>S. Lozovoy Consulting<small>Swiss Finance Desk</small></div>
+    </div>
+    <nav class="nav-links">
+      <a href="#decision">The role</a>
+      <a href="#blueprint">Blueprint</a>
+      <a href="#ongoing">Ongoing support</a>
+      <a href="#fit">Who it's for</a>
+      <button class="btn" data-open="booking">Book an assessment</button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Financial planning for UK companies entering Switzerland</span>
+    <h1>Enter Switzerland with the numbers understood</h1>
+    <p class="lede">Financial planning and implementation support for UK companies entering the Swiss market.</p>
+    <p>Switzerland can offer UK businesses attractive customers, strong purchasing power and a stable commercial environment. It can also introduce unfamiliar questions around pricing, VAT, local employment, operating structure, currency exposure and the true cost of establishing a presence.</p>
+    <p>I help UK SMEs turn Swiss expansion plans into financially grounded decisions. Before you form an entity, hire locally or commit substantial capital, I build the financial case, assess the practical operating options and create a clear implementation plan.</p>
+    <div class="hero-cta">
+      <button class="btn" data-open="questionnaire">Begin with a Swiss Entry Assessment</button>
+      <a href="#blueprint" class="btn btn-ghost">See the Blueprint</a>
+    </div>
+  </div>
+</section>
+
+<!-- DECISION / ROLE -->
+<section id="decision" class="section-alt">
+  <div class="wrap">
+    <div class="kicker">From market interest to an investable decision</div>
+    <h2>The management questions nobody else is answering</h2>
+    <p class="role-line" style="margin-top:20px;">Your UK accountant knows your existing business. A Swiss fiduciary can manage local filings. A lawyer can establish a company. But someone still needs to answer the management questions:</p>
+    <ul class="q-grid">
+      <li><span class="n">01</span> Is Switzerland commercially attractive for this particular business?</li>
+      <li><span class="n">02</span> Can the opportunity support the full cost of entry?</li>
+      <li><span class="n">03</span> Should the company sell from the UK, use a local partner, hire locally or establish a Swiss entity?</li>
+      <li><span class="n">04</span> How should Swiss revenue, costs, cash flow and currency exposure be modelled?</li>
+      <li><span class="n">05</span> What must be resolved before the first contract or local hire?</li>
+      <li><span class="n">06</span> Which advisers are actually required, and at what stage?</li>
+    </ul>
+    <p class="desk-tag">That is the role of the <strong>Swiss Finance Desk</strong>.</p>
+  </div>
+</section>
+
+<!-- BLUEPRINT -->
+<section id="blueprint">
+  <div class="wrap">
+    <div class="blueprint">
+      <div>
+        <div class="kicker">The core engagement</div>
+        <h2>Swiss Market Entry Financial Blueprint</h2>
+        <p class="section-intro">A focused financial and operating assessment for UK businesses considering expansion into Switzerland. The engagement typically covers:</p>
+        <ul class="deliver">
+          <li>Swiss-market revenue and pricing scenarios</li>
+          <li>Launch costs and three-year financial projections</li>
+          <li>Cash-flow and working-capital requirements</li>
+          <li>GBP/CHF currency exposure</li>
+          <li>Direct selling, partnership, employment, branch and subsidiary options</li>
+          <li>VAT, payroll, permanent-establishment and compliance questions requiring specialist review</li>
+          <li>Management reporting requirements</li>
+          <li>A 90-day implementation plan</li>
+          <li>A clear go, test, defer or no-go recommendation</li>
+        </ul>
+      </div>
+      <aside class="outcome-card">
+        <h3>What you receive</h3>
+        <p>An integrated set of decision tools — not a generic market report.</p>
+        <ul class="outcome-list">
+          <li><span class="check">✓</span><span><b>Integrated financial model</b> — revenue, costs, cash flow and currency in one place.</span></li>
+          <li><span class="check">✓</span><span><b>Decision memorandum</b> — the commercial case, set out clearly.</span></li>
+          <li><span class="check">✓</span><span><b>Practical action plan</b> — a 90-day path to first contract or hire.</span></li>
+          <li><span class="check">✓</span><span><b>A clear recommendation</b> — go, test, defer or no-go.</span></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ONGOING -->
+<section id="ongoing" class="section-alt">
+  <div class="wrap">
+    <div class="kicker">After the decision</div>
+    <h2>Ongoing Swiss finance support</h2>
+    <p class="section-intro">Once the decision to enter has been made, I can act as your fractional Swiss finance lead.</p>
+    <div class="support-grid">
+      <div class="item"><span>Reporting</span>Swiss management accounts and performance reporting</div>
+      <div class="item"><span>Control</span>Budget and cash-flow oversight</div>
+      <div class="item"><span>Profitability</span>Customer and channel profitability</div>
+      <div class="item"><span>Commercial</span>Financial support for pricing and contracts</div>
+      <div class="item"><span>Coordination</span>Working with Swiss fiduciaries, payroll providers and tax advisers</div>
+      <div class="item"><span>Governance</span>Board and investor reporting</div>
+      <div class="item"><span>Delivery</span>Monitoring of launch milestones and financial risks</div>
+    </div>
+    <p class="pull">You retain one senior English-speaking point of contact who understands both the commercial objective and the underlying numbers.</p>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section id="fit">
+  <div class="wrap">
+    <div class="kicker">Who this is for</div>
+    <h2>Built for UK SMEs weighing the Swiss opportunity</h2>
+    <p class="section-intro">The service is designed for UK-based SMEs, founders and management teams that:</p>
+    <div class="fit-grid">
+      <div class="fit"><span class="dot"></span><p>have prospective customers or partners in Switzerland;</p></div>
+      <div class="fit"><span class="dot"></span><p>are considering their first Swiss employee;</p></div>
+      <div class="fit"><span class="dot"></span><p>are deciding whether to create a local entity;</p></div>
+      <div class="fit"><span class="dot"></span><p>need to understand the economics before committing capital;</p></div>
+      <div class="fit"><span class="dot"></span><p>have already entered Switzerland but lack clear local financial reporting.</p></div>
+    </div>
+    <p class="sectors">It is particularly suited to <b>B2B technology, software, financial infrastructure, data, professional-services</b> and other knowledge-led companies.</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section-alt">
+  <div class="wrap">
+    <div class="about">
+      <div class="portrait">SL</div>
+      <div>
+        <div class="kicker">Independent, commercially grounded advice</div>
+        <h2 style="margin-bottom:18px;">One adviser bringing the plan, the model and the process together</h2>
+        <p>I am a Swiss-based finance professional with experience across accounting, audit, corporate finance, banking, investment analysis and business building.</p>
+        <p>My role is to bring the commercial plan, financial model and implementation process together. Where Swiss legal, tax, payroll or regulatory opinions are required, I coordinate with the appropriate qualified specialists — rather than pretending that one adviser should do everything.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="cta">
+  <div class="wrap">
+    <div class="kicker" style="color:var(--gold);">Begin here</div>
+    <h2>Begin with a Swiss Entry Assessment</h2>
+    <p class="section-intro">A focused initial session will examine:</p>
+    <ul class="cta-list">
+      <li>Your Swiss opportunity</li>
+      <li>Expected customers and revenue model</li>
+      <li>Proposed activities in Switzerland</li>
+      <li>Current entry assumptions</li>
+      <li>Principal financial and operating risks</li>
+      <li>The most sensible next step</li>
+    </ul>
+    <p class="cta-outcome">The objective is simple: determine what must be true for Switzerland to become a profitable market for your business.</p>
+    <button class="btn" data-open="questionnaire">Request an assessment</button>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="brand">
+        <div class="mark">SL</div>
+        <div>S. Lozovoy Consulting<small>Swiss Finance Desk</small></div>
+      </div>
+      <div class="foot-contact">
+        Enquiries<br>
+        <a href="mailto:sergey@lozovoy.ch">sergey@lozovoy.ch</a>
+      </div>
+    </div>
+    <p class="foot-note">
+      S. Lozovoy Consulting provides financial planning, modelling and implementation support. It does not provide legal, tax, audit or regulatory opinions; where such advice is required, it is coordinated with appropriately qualified specialists. &copy; 2026 S. Lozovoy Consulting. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<!-- ============ QUESTIONNAIRE MODAL ============ -->
+<div class="modal" id="questionnaire" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="dialog" role="dialog" aria-modal="true" aria-label="Swiss Entry Assessment questionnaire">
+    <div class="dialog-head">
+      <div class="kicker">Swiss Entry Assessment</div>
+      <h3>A few quick questions</h3>
+      <p>Two minutes. It helps me prepare before we speak — there are no wrong answers.</p>
+      <button class="close-x" data-close aria-label="Close">&times;</button>
+    </div>
+    <div class="progress" id="qProgress">
+      <span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span>
+    </div>
+    <form id="qForm" novalidate>
+      <div class="dialog-body">
+        <!-- step 0 -->
+        <div class="q-step">
+          <p class="step-legend">First, who are you?</p>
+          <div class="field"><label for="q-name">Your name</label><input id="q-name" name="name" type="text" required autocomplete="name" placeholder="Jane Smith"></div>
+          <div class="field"><label for="q-company">Company</label><input id="q-company" name="company" type="text" required autocomplete="organization" placeholder="Acme Ltd"></div>
+          <div class="field"><label for="q-email">Work email</label><input id="q-email" name="email" type="email" required autocomplete="email" placeholder="jane@acme.co.uk"></div>
+        </div>
+        <!-- step 1 -->
+        <div class="q-step" hidden>
+          <p class="step-legend">Where are you with Switzerland?</p>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="stage" value="Just exploring the opportunity" required> Just exploring the opportunity</label>
+            <label class="opt"><input type="radio" name="stage" value="We have prospective customers or partners"> We have prospective customers or partners</label>
+            <label class="opt"><input type="radio" name="stage" value="Considering our first Swiss employee"> Considering our first Swiss employee</label>
+            <label class="opt"><input type="radio" name="stage" value="Deciding whether to form a local entity"> Deciding whether to form a local entity</label>
+            <label class="opt"><input type="radio" name="stage" value="Already operating in Switzerland"> Already operating in Switzerland</label>
+          </div>
+        </div>
+        <!-- step 2 -->
+        <div class="q-step" hidden>
+          <p class="step-legend">What kind of business is it?</p>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="sector" value="B2B technology or software" required> B2B technology or software</label>
+            <label class="opt"><input type="radio" name="sector" value="Financial infrastructure"> Financial infrastructure</label>
+            <label class="opt"><input type="radio" name="sector" value="Data"> Data</label>
+            <label class="opt"><input type="radio" name="sector" value="Professional services"> Professional services</label>
+            <label class="opt"><input type="radio" name="sector" value="Other knowledge-led business"> Other knowledge-led business</label>
+          </div>
+        </div>
+        <!-- step 3 -->
+        <div class="q-step" hidden>
+          <p class="step-legend">What would you most like answered?</p>
+          <div class="field">
+            <label for="q-goal">Your main question or objective</label>
+            <textarea id="q-goal" name="goal" required placeholder="e.g. Can our Swiss pipeline support the cost of a local hire in year one?"></textarea>
+          </div>
+          <div class="field">
+            <label for="q-timeline">Rough timeline</label>
+            <select id="q-timeline" name="timeline">
+              <option value="Within 3 months">Within 3 months</option>
+              <option value="3–6 months">3–6 months</option>
+              <option value="6–12 months">6–12 months</option>
+              <option value="Not yet decided">Not yet decided</option>
+            </select>
+          </div>
+        </div>
+        <!-- review -->
+        <div class="q-step" hidden>
+          <p class="step-legend">Does this look right?</p>
+          <div id="qReview"></div>
+          <p class="hint" style="margin-top:16px;">Sending will open your email app with these answers pre-filled, addressed to Sergey. Nothing is sent until you press send there.</p>
+        </div>
+        <!-- success -->
+        <div class="q-step" hidden>
+          <div class="success">
+            <div class="badge">✓</div>
+            <h3>Thank you</h3>
+            <p>Your answers are ready in a draft email to <b>sergey@lozovoy.ch</b>. Press send and I'll be in touch within one working day to arrange your assessment.</p>
+            <p style="margin-top:14px;">Prefer to pick a time now?</p>
+            <button type="button" class="btn" style="margin-top:10px;" data-switch="booking">Book a slot instead</button>
+          </div>
+        </div>
+      </div>
+      <div class="dialog-foot" id="qFoot">
+        <button type="button" class="btn btn-ghost" data-q="back">Back</button>
+        <button type="button" class="btn" data-q="next">Continue</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ============ BOOKING MODAL ============ -->
+<div class="modal" id="booking" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="dialog" role="dialog" aria-modal="true" aria-label="Book an assessment">
+    <div class="dialog-head">
+      <div class="kicker">Book an assessment</div>
+      <h3>Choose a time that suits you</h3>
+      <p>Pick a weekday and slot for a 45-minute introductory session (Central European Time).</p>
+      <button class="close-x" data-close aria-label="Close">&times;</button>
+    </div>
+    <div class="dialog-body" id="bookBody">
+      <div class="cal-head">
+        <strong id="calLabel"></strong>
+        <div class="cal-nav">
+          <button type="button" id="calPrev" aria-label="Previous month">&lsaquo;</button>
+          <button type="button" id="calNext" aria-label="Next month">&rsaquo;</button>
+        </div>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+      <div class="slots-wrap" id="slotsWrap" hidden>
+        <h4 id="slotsLabel">Available times</h4>
+        <div class="slots" id="slots"></div>
+      </div>
+      <p class="muted-note" id="calHint">Weekends are unavailable. Select a date to see times.</p>
+    </div>
+    <div class="dialog-foot">
+      <button type="button" class="btn btn-ghost" data-close>Cancel</button>
+      <button type="button" class="btn" id="bookConfirm" disabled>Confirm booking</button>
+    </div>
+    <!-- success overlay reuses body -->
+  </div>
+</div>
+
+<script>
+(function(){
+  var CONTACT = "sergey@lozovoy.ch";
+
+  /* ---------- generic modal ---------- */
+  function open(id){
+    var m = document.getElementById(id);
+    if(!m) return;
+    m.classList.add('open');
+    m.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    if(id==='questionnaire') qGo(0);
+    if(id==='booking') renderCal();
+  }
+  function closeModal(m){
+    m.classList.remove('open');
+    m.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+  }
+  document.querySelectorAll('[data-open]').forEach(function(b){
+    b.addEventListener('click', function(){ open(b.getAttribute('data-open')); });
+  });
+  document.querySelectorAll('[data-close]').forEach(function(b){
+    b.addEventListener('click', function(){ closeModal(b.closest('.modal')); });
+  });
+  document.querySelectorAll('[data-switch]').forEach(function(b){
+    b.addEventListener('click', function(){
+      closeModal(b.closest('.modal'));
+      open(b.getAttribute('data-switch'));
+    });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape'){
+      var m = document.querySelector('.modal.open');
+      if(m) closeModal(m);
+    }
+  });
+
+  /* ---------- questionnaire ---------- */
+  var qForm = document.getElementById('qForm');
+  var qSteps = Array.prototype.slice.call(qForm.querySelectorAll('.q-step'));
+  var qFoot = document.getElementById('qFoot');
+  var qBack = qForm.querySelector('[data-q="back"]');
+  var qNext = qForm.querySelector('[data-q="next"]');
+  var qBars = document.querySelectorAll('#qProgress span');
+  var REVIEW = 4, SUCCESS = 5, LASTQ = 3;
+  var qi = 0;
+
+  function qGo(i){
+    qi = i;
+    qSteps.forEach(function(s,idx){ s.hidden = idx!==i; });
+    qBars.forEach(function(b,idx){ b.className = idx < Math.min(i,4) ? 'done' : (idx===i ? 'active':''); });
+    qFoot.style.display = i===SUCCESS ? 'none' : 'flex';
+    qBack.style.visibility = (i===0) ? 'hidden' : 'visible';
+    qNext.textContent = i===LASTQ ? 'Review answers' : (i===REVIEW ? 'Looks good — prepare email' : 'Continue');
+    if(i===REVIEW) buildReview();
+  }
+
+  function validStep(i){
+    var fields = qSteps[i].querySelectorAll('input, textarea, select');
+    // radio groups
+    var radios = qSteps[i].querySelectorAll('input[type=radio][required]');
+    for(var r=0;r<radios.length;r++){
+      var name = radios[r].name;
+      if(!qForm.querySelector('input[name="'+name+'"]:checked')){
+        alert('Please choose an option to continue.');
+        return false;
+      }
+    }
+    for(var f=0; f<fields.length; f++){
+      var el = fields[f];
+      if(el.type==='radio') continue;
+      if(el.hasAttribute('required') && !el.value.trim()){
+        el.focus(); el.reportValidity && el.reportValidity();
+        return false;
+      }
+      if(el.type==='email' && el.value && !el.checkValidity()){
+        el.focus(); el.reportValidity && el.reportValidity();
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function val(name){
+    var el = qForm.querySelector('[name="'+name+'"]:checked') || qForm.querySelector('[name="'+name+'"]');
+    return el ? el.value : '';
+  }
+
+  function buildReview(){
+    var rows = [
+      ['Name', val('name')],
+      ['Company', val('company')],
+      ['Email', val('email')],
+      ['Stage', val('stage')],
+      ['Sector', val('sector')],
+      ['Timeline', val('timeline')],
+      ['Objective', val('goal')]
+    ];
+    document.getElementById('qReview').innerHTML = rows.map(function(r){
+      return '<div class="review-row"><span class="k">'+r[0]+'</span><span class="v">'+
+        (r[1]||'—').replace(/</g,'&lt;')+'</span></div>';
+    }).join('');
+  }
+
+  function sendQuestionnaire(){
+    var body =
+      "Swiss Entry Assessment — request\n\n"+
+      "Name: "+val('name')+"\n"+
+      "Company: "+val('company')+"\n"+
+      "Email: "+val('email')+"\n\n"+
+      "Stage: "+val('stage')+"\n"+
+      "Sector: "+val('sector')+"\n"+
+      "Timeline: "+val('timeline')+"\n\n"+
+      "Main question / objective:\n"+val('goal')+"\n";
+    var url = "mailto:"+CONTACT+
+      "?subject="+encodeURIComponent("Swiss Entry Assessment — "+val('company'))+
+      "&body="+encodeURIComponent(body);
+    window.location.href = url;
+  }
+
+  qNext.addEventListener('click', function(){
+    if(qi<=LASTQ){ if(!validStep(qi)) return; qGo(qi+1); return; }
+    if(qi===REVIEW){ sendQuestionnaire(); qGo(SUCCESS); return; }
+  });
+  qBack.addEventListener('click', function(){ if(qi>0) qGo(qi-1); });
+
+  /* ---------- booking calendar ---------- */
+  var SLOTS = ['09:00','10:00','11:00','14:00','15:00','16:00'];
+  var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var DOW = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  var today = new Date(); today.setHours(0,0,0,0);
+  var vY = today.getFullYear(), vM = today.getMonth();
+  var selDate = null, selTime = null;
+
+  var calLabel = document.getElementById('calLabel');
+  var calGrid = document.getElementById('calGrid');
+  var calPrev = document.getElementById('calPrev');
+  var calNext = document.getElementById('calNext');
+  var slotsWrap = document.getElementById('slotsWrap');
+  var slotsBox = document.getElementById('slots');
+  var slotsLabel = document.getElementById('slotsLabel');
+  var bookConfirm = document.getElementById('bookConfirm');
+
+  function sameYM(y,m,d){ return d.getFullYear()===y && d.getMonth()===m; }
+
+  function renderCal(){
+    calLabel.textContent = MONTHS[vM]+' '+vY;
+    calPrev.disabled = (vY===today.getFullYear() && vM===today.getMonth());
+    calGrid.innerHTML = '';
+    DOW.forEach(function(d){
+      var el = document.createElement('div'); el.className='dow'; el.textContent=d; calGrid.appendChild(el);
+    });
+    var first = new Date(vY,vM,1);
+    var offset = (first.getDay()+6)%7; // Mon=0
+    var days = new Date(vY,vM+1,0).getDate();
+    for(var i=0;i<offset;i++){
+      var e = document.createElement('div'); e.className='cal-day empty'; calGrid.appendChild(e);
+    }
+    for(var d=1; d<=days; d++){
+      var dateObj = new Date(vY,vM,d); dateObj.setHours(0,0,0,0);
+      var btn = document.createElement('button');
+      btn.type='button'; btn.className='cal-day'; btn.textContent=d;
+      var dow = dateObj.getDay();
+      var past = dateObj < today;
+      var weekend = (dow===0 || dow===6);
+      if(past || weekend){ btn.disabled = true; }
+      else {
+        (function(dObj, bEl){
+          bEl.addEventListener('click', function(){ selectDate(dObj, bEl); });
+        })(dateObj, btn);
+      }
+      if(selDate && selDate.getTime()===dateObj.getTime()) btn.classList.add('sel');
+      calGrid.appendChild(btn);
+    }
+  }
+
+  function selectDate(dObj, btn){
+    selDate = dObj; selTime = null;
+    calGrid.querySelectorAll('.cal-day.sel').forEach(function(b){ b.classList.remove('sel'); });
+    btn.classList.add('sel');
+    var label = dObj.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
+    slotsLabel.textContent = 'Times on '+label;
+    slotsBox.innerHTML='';
+    SLOTS.forEach(function(t){
+      var s = document.createElement('button');
+      s.type='button'; s.className='slot'; s.textContent=t;
+      s.addEventListener('click', function(){
+        selTime = t;
+        slotsBox.querySelectorAll('.slot.sel').forEach(function(x){ x.classList.remove('sel'); });
+        s.classList.add('sel');
+        bookConfirm.disabled = false;
+      });
+      slotsBox.appendChild(s);
+    });
+    slotsWrap.hidden = false;
+    bookConfirm.disabled = true;
+  }
+
+  calPrev.addEventListener('click', function(){
+    if(calPrev.disabled) return;
+    vM--; if(vM<0){ vM=11; vY--; } renderCal();
+  });
+  calNext.addEventListener('click', function(){
+    vM++; if(vM>11){ vM=0; vY++; } renderCal();
+  });
+
+  bookConfirm.addEventListener('click', function(){
+    if(!selDate || !selTime) return;
+    var pretty = selDate.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+    var body =
+      "I'd like to book a Swiss Entry Assessment.\n\n"+
+      "Requested slot: "+pretty+" at "+selTime+" (CET)\n\n"+
+      "Name:\nCompany:\nBrief note on the Swiss opportunity:\n";
+    window.location.href = "mailto:"+CONTACT+
+      "?subject="+encodeURIComponent("Assessment booking — "+pretty+" "+selTime)+
+      "&body="+encodeURIComponent(body);
+    document.getElementById('bookBody').innerHTML =
+      '<div class="success"><div class="badge">✓</div><h3>Almost there</h3>'+
+      '<p>A draft email requesting <b>'+pretty+' at '+selTime+' (CET)</b> has opened in your email app. '+
+      'Press send and you\'ll receive a calendar confirmation by return.</p></div>';
+    bookConfirm.style.display='none';
+  });
+})();
+</script>
+
+</body>
+</html>
