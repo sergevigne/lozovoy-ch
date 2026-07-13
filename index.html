@@ -596,14 +596,14 @@
         <div class="q-step" hidden>
           <p class="step-legend">Does this look right?</p>
           <div id="qReview"></div>
-          <p class="hint" style="margin-top:16px;">Sending will open your email app with these answers pre-filled, addressed to Sergey. Nothing is sent until you press send there.</p>
+          <p class="hint" style="margin-top:16px;">When you send, your answers go straight to Sergey and you'll receive a confirmation by email — no email app needed.</p>
         </div>
         <!-- success -->
         <div class="q-step" hidden>
           <div class="success">
             <div class="badge">✓</div>
             <h3>Thank you</h3>
-            <p>Your answers are ready in a draft email to <b>sergey@lozovoy.ch</b>. Press send and I'll be in touch within one working day to arrange your assessment.</p>
+            <p>Your request has been sent to <b>sergey@lozovoy.ch</b>. You'll receive a confirmation by email shortly, and a reply within one working day.</p>
             <p style="margin-top:14px;">Prefer to pick a time now?</p>
             <button type="button" class="btn" style="margin-top:10px;" data-switch="booking">Book a slot instead</button>
           </div>
@@ -636,6 +636,7 @@
 <script>
 (function(){
   var CONTACT = "sergey@lozovoy.ch";
+  var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbzMwhoQoLuPfZZhlgSkYaiTl76lgXN0LJcG1bXnsQS8nS0dZXrxOXyGh_2U2hSe8eEGTQ/exec";
 
   /* ---------- generic modal ---------- */
   function open(id){
@@ -686,7 +687,7 @@
     qBars.forEach(function(b,idx){ b.className = idx < Math.min(i,4) ? 'done' : (idx===i ? 'active':''); });
     qFoot.style.display = i===SUCCESS ? 'none' : 'flex';
     qBack.style.visibility = (i===0) ? 'hidden' : 'visible';
-    qNext.textContent = i===LASTQ ? 'Review answers' : (i===REVIEW ? 'Looks good — prepare email' : 'Continue');
+    qNext.textContent = i===LASTQ ? 'Review answers' : (i===REVIEW ? 'Send request' : 'Continue');
     if(i===REVIEW) buildReview();
   }
 
@@ -738,19 +739,22 @@
   }
 
   function sendQuestionnaire(){
-    var body =
-      "Swiss Entry Assessment — request\n\n"+
-      "Name: "+val('name')+"\n"+
-      "Company: "+val('company')+"\n"+
-      "Email: "+val('email')+"\n\n"+
-      "Stage: "+val('stage')+"\n"+
-      "Sector: "+val('sector')+"\n"+
-      "Timeline: "+val('timeline')+"\n\n"+
-      "Main question / objective:\n"+val('goal')+"\n";
-    var url = "mailto:"+CONTACT+
-      "?subject="+encodeURIComponent("Swiss Entry Assessment — "+val('company'))+
-      "&body="+encodeURIComponent(body);
-    window.location.href = url;
+    var params = new URLSearchParams();
+    params.append('name', val('name'));
+    params.append('company', val('company'));
+    params.append('email', val('email'));
+    params.append('stage', val('stage'));
+    params.append('sector', val('sector'));
+    params.append('timeline', val('timeline'));
+    params.append('goal', val('goal'));
+    // Fire-and-forget POST to the Google Apps Script (opaque response; the
+    // script sends the notification + auto-reply emails server-side).
+    fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      body: params.toString()
+    }).catch(function(){ /* opaque response — nothing to read */ });
   }
 
   qNext.addEventListener('click', function(){
