@@ -48,6 +48,7 @@
   .btn:hover{background:var(--accent-soft);text-decoration:none;transform:translateY(-1px);color:#fff;}
   .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line);}
   .btn-ghost:hover{background:var(--white);border-color:var(--ink);color:var(--ink);}
+  .btn-sm{display:none;}
 
   /* ---------- Header ---------- */
   header{
@@ -275,9 +276,21 @@
   }
   @media(max-width:640px){
     body{font-size:16px;}
+    .wrap{padding:0 20px;}
     .nav-links a:not(.btn){display:none;}
+    .nav{height:60px;gap:10px;}
+    .brand{font-size:1rem;gap:9px;min-width:0;line-height:1.1;}
+    .brand > div{min-width:0;}
+    .mark{width:34px;height:34px;font-size:.95rem;}
+    .brand small{font-size:.56rem;letter-spacing:.09em;white-space:nowrap;}
+    .btn-lg{display:none;}
+    .btn-sm{display:inline;}
     .hero{padding:60px 0 54px;}
     section{padding:56px 0;}
+  }
+  @media(max-width:360px){
+    .brand{font-size:.92rem;}
+    .brand small{font-size:.52rem;}
   }
 </style>
 </head>
@@ -287,14 +300,14 @@
   <div class="wrap nav">
     <div class="brand">
       <div class="mark">SL</div>
-      <div>S. Lozovoy Consulting<small>Swiss Finance Desk</small></div>
+      <div>S. Lozovoy Consulting<small>Your Swiss Finance Desk</small></div>
     </div>
     <nav class="nav-links">
       <a href="#decision">The role</a>
       <a href="#blueprint">Blueprint</a>
       <a href="#ongoing">Ongoing support</a>
       <a href="#fit">Who it's for</a>
-      <button class="btn" data-open="booking">Book an assessment</button>
+      <button class="btn" data-open="booking"><span class="btn-lg">Book an assessment</span><span class="btn-sm">Book</span></button>
     </nav>
   </div>
 </header>
@@ -450,7 +463,7 @@
     <div class="foot">
       <div class="brand">
         <div class="mark">SL</div>
-        <div>S. Lozovoy Consulting<small>Swiss Finance Desk</small></div>
+        <div>S. Lozovoy Consulting<small>Your Swiss Finance Desk</small></div>
       </div>
       <div class="foot-contact">
         Enquiries<br>

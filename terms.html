@@ -56,7 +56,14 @@
   .foot{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;}
   .foot-contact{font-size:.9rem;color:var(--muted);}
   .foot-note{margin-top:24px;padding-top:20px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted);line-height:1.6;}
-  @media(max-width:640px){body{font-size:16px;}.brand small{display:none;}}
+  @media(max-width:640px){
+    body{font-size:16px;}
+    .wrap{padding:0 20px;}
+    .nav{gap:12px;}
+    .brand{font-size:.98rem;min-width:0;}
+    .brand small{display:none;}
+    .mark{width:34px;height:34px;font-size:.95rem;}
+  }
 </style>
 </head>
 <body>
@@ -65,7 +72,7 @@
   <div class="wrap nav">
     <a class="brand" href="/">
       <span class="mark">SL</span>
-      <span>S. Lozovoy Consulting<small>Swiss Finance Desk</small></span>
+      <span>S. Lozovoy Consulting<small>Your Swiss Finance Desk</small></span>
     </a>
     <a class="back" href="/">&larr; Back to home</a>
   </div>
@@ -275,7 +282,7 @@
     <div class="foot">
       <a class="brand" href="/">
         <span class="mark">SL</span>
-        <span>S. Lozovoy Consulting<small>Swiss Finance Desk</small></span>
+        <span>S. Lozovoy Consulting<small>Your Swiss Finance Desk</small></span>
       </a>
       <div class="foot-contact">
         Enquiries<br>
