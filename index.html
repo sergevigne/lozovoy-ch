@@ -143,12 +143,13 @@
   .check{color:var(--gold);flex:none;font-weight:700;}
 
   /* ---------- Ongoing support ---------- */
-  .support-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:30px;}
+  .support-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));grid-auto-rows:1fr;gap:18px;margin-top:30px;}
   .support-grid .item{
     background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:22px 22px;
     font-size:.98rem;color:var(--ink-soft);box-shadow:var(--shadow);
   }
   .support-grid .item span{display:block;color:var(--accent);font-family:'Fraunces',serif;font-weight:600;font-size:.9rem;margin-bottom:8px;}
+  .xero-logo{width:50px;height:50px;display:block;margin-bottom:12px;}
   .pull{max-width:680px;margin:36px auto 0;text-align:center;font-family:'Fraunces',serif;font-size:1.3rem;color:var(--ink);line-height:1.4;}
 
   /* ---------- Who it's for ---------- */
@@ -465,7 +466,7 @@
       <div class="item"><span>Coordination</span>Working with Swiss fiduciaries, payroll providers and tax advisers</div>
       <div class="item"><span>Governance</span>Board and investor reporting</div>
       <div class="item"><span>Delivery</span>Monitoring of launch milestones and financial risks</div>
-      <div class="item"><span>Systems</span>Power-user command of Xero — the cloud accounting platform many UK SMEs already run — for clean, real-time reporting</div>
+      <div class="item"><img class="xero-logo" src="/xero-logo.png" alt="Xero accounting software" width="50" height="50">Power-user command of Xero for clean, real-time reporting on both sides</div>
     </div>
     <p class="pull">You retain one senior English-speaking point of contact who understands both the commercial objective and the underlying numbers.</p>
   </div>
