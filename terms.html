@@ -306,6 +306,11 @@
       b.setAttribute('aria-pressed', b.getAttribute('data-lang-btn') === l ? 'true' : 'false');
     });
   }
+  // Honour /terms.html#de (or ?lang=de) so German pages open the GTC in German.
+  (function(){
+    var wantDe = location.hash.toLowerCase() === '#de' || /[?&]lang=de\b/i.test(location.search);
+    if (wantDe) setLang('de');
+  })();
 </script>
 
 </body>
